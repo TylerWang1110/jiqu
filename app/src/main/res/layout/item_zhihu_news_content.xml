@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_item_zhihunews_content_date"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:gravity="center|left"
+        android:paddingLeft="10dp"
+        android:textColor="@android:color/darker_gray"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zhihu_news_content_item_height"
+        android:layout_marginBottom="@dimen/zhihu_news_content_cardview_margintop"
+        android:layout_marginLeft="@dimen/zhihu_news_content_cardview_marginleft"
+        android:layout_marginRight="@dimen/zhihu_news_content_cardview_marginleft"
+        android:layout_marginTop="@dimen/zhihu_news_content_cardview_margintop"
+        app:cardCornerRadius="@dimen/zhihu_news_content_cardview_radius"
+        app:cardElevation="@dimen/zhihu_news_content_cardview_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/zhihu_news_content_ll_padding">
+
+            <TextView
+                android:id="@+id/tv_item_zhihunews_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:padding="@dimen/zhihu_news_content_textview_padding"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/zhihu_news_content_textview_size"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/iv_item_zhihunews_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"/>
+
+                <ImageView
+                    android:id="@+id/iv_item_zhihunews_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/more_pic"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

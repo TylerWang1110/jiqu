@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="tyler.jiqu.view.ZhihuNewsDetaileActivity">
+    <item
+        android:id="@+id/action_collect"
+        android:icon="@mipmap/collect"
+        android:orderInCategory="100"
+        android:title="@string/zhihu_news_detaile_menu_title_collect"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_share"
+        android:icon="@mipmap/share"
+        android:orderInCategory="100"
+        android:title="@string/zhihu_news_detaile_menu_title_share"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_comment"
+        android:icon="@mipmap/comment"
+        android:orderInCategory="100"
+        android:title="@string/zhihu_news_detaile_menu_title_comment"
+        app:showAsAction="never"/>
+</menu>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">汲取</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="author_name">Tyler Wang</string>
+    <string name="author_email">tyler_wangjian@hotmail.com</string>
+    <string name="title_activity_zhihu_news_detaile">ZhihuNewsDetaileActivity</string>
+    <string name="zhihu_news_detaile_menu_title_collect">收藏</string>
+    <string name="zhihu_news_detaile_menu_title_share">分享</string>
+    <string name="zhihu_news_detaile_menu_title_comment">查看评论</string>
+</resources>
