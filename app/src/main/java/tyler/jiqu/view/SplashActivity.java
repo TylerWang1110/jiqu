@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,8 +31,6 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
         mMSplashPresenter = new SplashPresenterImpl(this);
-        //设置全屏
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         initView();
     }
 
@@ -52,7 +49,9 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Override
     public void go2Main() {
         finish();
+
         startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override

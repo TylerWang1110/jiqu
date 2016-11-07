@@ -64,7 +64,8 @@ public class ZhihuNewsContentAdapter extends RecyclerView.Adapter<ZhihuNewsConte
 
     @Override
     public ZhihuNewsContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_zhihu_news_content, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout
+                .item_zhihu_news_content, parent, false));
 
     }
 

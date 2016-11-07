@@ -6,6 +6,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import okhttp3.Call;
 import tyler.jiqu.model.ZhihuNewsModel;
+import tyler.jiqu.model.ZhihuNewsThemeModel;
+import tyler.jiqu.view.MainActivity;
 import tyler.jiqu.view.ZhihuNewsFragment;
 import tyler.jiqu.view.ZhihuNewsView;
 
@@ -39,6 +41,31 @@ public class ZhihuNewsPresenterImpl implements ZhihuNewsPresenter {
                         ZhihuNewsModel zhihuNewsModel = gson.fromJson(response, ZhihuNewsModel.class);
                         if (zhihuNewsModel != null) {
                             mZhihuNewsFragment.showView(zhihuNewsModel);
+                        }
+                    }
+                });
+    }
+
+    public void getNewsThemesList(String url) {
+        OkHttpUtils.get()
+                .url(url)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        if (response != null) {
+                            Gson gson = new Gson();
+                            ZhihuNewsThemeModel zhihuNewsThemeModel = gson.fromJson(response,
+                                    ZhihuNewsThemeModel.class);
+                            if (zhihuNewsThemeModel != null) {
+                                MainActivity activity = (MainActivity) mZhihuNewsFragment.getActivity();
+                                activity.showNavView(zhihuNewsThemeModel);
+                            }
                         }
                     }
                 });

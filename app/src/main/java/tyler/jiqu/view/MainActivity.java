@@ -14,11 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import tyler.jiqu.R;
 import tyler.jiqu.globle.Const;
 import tyler.jiqu.manager.PageManger;
+import tyler.jiqu.model.ZhihuNewsThemeModel;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainView, View.OnClickListener {
@@ -34,6 +37,11 @@ public class MainActivity extends AppCompatActivity
     @Bind(R.id.fl_main_content)
     FrameLayout mFlMainContent;
     private FragmentManager mFragmentManager;
+    private Menu mMenu;
+    private List<ZhihuNewsThemeModel.OthersBean> mOthers;
+    private ZhihuNewsFragment mZhihuNewsFragment;
+    private ZhihuNewsThemeContentFragment mZhihuNewsThemeContentFragment;
+    private int mlastItem = R.id.nav_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +57,15 @@ public class MainActivity extends AppCompatActivity
 
     private void initView() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mTbMain, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, mDrawerLayout, mTbMain, R.string.navigation_drawer_open, R.string
+                .navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         mNavView.setNavigationItemSelectedListener(this);
+        mMenu = mNavView.getMenu();
         mFragmentManager = getSupportFragmentManager();
         FrameLayout mainLayout = PageManger.getInstance().getPage(PageManger.PAGETYPE_ZHIHUNEWS);
-        mFragmentManager.beginTransaction().replace(R.id.fl_main_content, new ZhihuNewsFragment(), Const.ZHIHU_NEWS).commit();
+        showHomeFragment();
     }
 
 
@@ -96,44 +106,64 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.nav_camera:
-
-                break;
-            case R.id.nav_gallery:
-
-                break;
-
-            case R.id.nav_slideshow:
-
-                break;
-
-            case R.id.nav_manage:
-
-                break;
-
-            case R.id.nav_share:
-
-                break;
-
-            case R.id.nav_send:
-
-                break;
-            default:
-
-                break;
-
+        if (item.getItemId() == mlastItem) {
+            item.setChecked(true);
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+            return false;
         }
+
+        for (int i = 0; i <= mOthers.size(); i++) {
+            mMenu.getItem(i).setChecked(false);
+        }
+
+        int itemId = item.getItemId();
+        if (itemId == R.id.nav_home) {
+            showHomeFragment();
+        } else {
+            ZhihuNewsThemeModel.OthersBean othersBean = mOthers.get(itemId);
+            showThemeFragment(othersBean);
+        }
+        item.setChecked(true);
         mDrawerLayout.closeDrawer(GravityCompat.START);
+        mlastItem = itemId;
         return true;
+    }
+
+    /**
+     * 显示首页Fragment
+     */
+    private void showHomeFragment() {
+        mZhihuNewsFragment = new ZhihuNewsFragment();
+        mFragmentManager.beginTransaction().replace(R.id.fl_main_content, mZhihuNewsFragment, Const
+                .ZHIHU_NEWS).commit();
+    }
+
+    /**
+     * 切换显示的Fragment
+     *
+     * @param othersBean
+     */
+    private void showThemeFragment(ZhihuNewsThemeModel.OthersBean othersBean) {
+        mFragmentManager.beginTransaction().replace(R.id.fl_main_content, new
+                ZhihuNewsThemeContentFragment
+                (othersBean), Const.ZHIHU_NEWS_THEME_CONTENT).commit();
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_main:
-                ZhihuNewsFragment fragment = (ZhihuNewsFragment) mFragmentManager.findFragmentByTag(Const.ZHIHU_NEWS);
-                fragment.getSvMainZhihu().smoothScrollTo(0,0);
+
+                if ( mlastItem != R.id.nav_home) {
+                    ZhihuNewsThemeContentFragment fragment = (ZhihuNewsThemeContentFragment) mFragmentManager.findFragmentByTag(Const
+                            .ZHIHU_NEWS_THEME_CONTENT);
+                    fragment.getRvThemecontent().smoothScrollToPosition(0);
+                }else {
+                ZhihuNewsFragment fragment = (ZhihuNewsFragment) mFragmentManager.findFragmentByTag(Const
+                        .ZHIHU_NEWS);
+                    fragment.getSvMainZhihu().smoothScrollTo(0, 0);
+                }
                 break;
 
             default:
@@ -141,4 +171,17 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
+
+    /**
+     * 初始化侧边栏数据
+     *
+     * @param zhihuNewsThemeModel
+     */
+    public void showNavView(ZhihuNewsThemeModel zhihuNewsThemeModel) {
+        mOthers = zhihuNewsThemeModel.getOthers();
+        for (int i = 0; i < mOthers.size(); i++) {
+            mMenu.add(R.id.nav_menu, i, 0, mOthers.get(i).getName());
+        }
+    }
+
 }

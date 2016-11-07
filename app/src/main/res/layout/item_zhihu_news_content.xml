@@ -41,6 +41,7 @@
                 android:textSize="@dimen/zhihu_news_content_textview_size"/>
 
             <RelativeLayout
+                android:id="@+id/rl_item_zhihunews_content_images"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
