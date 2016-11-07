@@ -96,7 +96,6 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
             e.printStackTrace();
         }
         mZhihuNewsPresenter.getData(Const.URL_ZHIHU_NEWS_LATEST);
-        mZhihuNewsPresenter.getNewsThemesList(Const.URL_ZHIHU_NEWS_THEME_LIST);
 
     }
 

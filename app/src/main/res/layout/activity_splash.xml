@@ -12,14 +12,17 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         />
+
     <TextView
         android:id="@+id/tv_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="@dimen/splash_tv_size"
-        android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/splash_tv_marginBottom"
+        android:layout_marginRight="@dimen/splash_tv_marginRight"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/splash_tv_size"
         />
 </RelativeLayout>

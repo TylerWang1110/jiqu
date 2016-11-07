@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/zhihu_news_head_hight"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_zhihunews_theme_head"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/detaile_head"/>
+
+    <TextView
+        android:id="@+id/tv_zhihunews_theme_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#20000000"
+        android:padding="15dp"
+        android:text="sdddddddddddddddddddddddddddd"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

@@ -24,8 +24,17 @@ import tyler.jiqu.model.ZhihuNewsThemeContentModel;
 public class ZhihuNewsThemeContentAdapter extends RecyclerView.Adapter<ZhihuNewsThemeContentAdapter
         .ViewHolder> {
 
+    private static final int VIEWTYPE_HEAD = 0;
+    private static final int VIEWTYPE_BODY = 1;
     private final List<ZhihuNewsThemeContentModel.StoriesBean> mShowItems;
     private final Context mContext;
+    private View mHeadView;
+
+    public OnItemClickListener mOnItemClickListener;
+
+    public static interface OnItemClickListener {
+        void OnItemClick(View v, int position);
+    }
 
     public ZhihuNewsThemeContentAdapter(List<ZhihuNewsThemeContentModel.StoriesBean> datas, Context context) {
         this.mShowItems = datas;
@@ -33,31 +42,45 @@ public class ZhihuNewsThemeContentAdapter extends RecyclerView.Adapter<ZhihuNews
     }
 
     @Override
+    public int getItemViewType(int position) {
+
+        return position == 0 ? VIEWTYPE_HEAD : VIEWTYPE_BODY;
+    }
+
+    @Override
     public ZhihuNewsThemeContentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout
-                .item_zhihu_news_content, parent, false));
+        if (viewType == VIEWTYPE_HEAD && mHeadView != null) {
+            return new ViewHolder(mHeadView);
+        } else {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout
+                    .item_zhihu_news_content, parent, false));
+        }
+
     }
 
     @Override
     public void onBindViewHolder(ZhihuNewsThemeContentAdapter.ViewHolder holder, int position) {
-        ZhihuNewsThemeContentModel.StoriesBean storiesBean = mShowItems.get(position);
+        if (getItemViewType(position) == VIEWTYPE_HEAD) {
+            return;
+        }
+        ZhihuNewsThemeContentModel.StoriesBean storiesBean = mShowItems.get(position - 1);
         holder.tv.setText(storiesBean.getTitle());
         List<String> images = storiesBean.getImages();
         if (images != null && images.size() > 0) {
             Glide.with(mContext)
                     .load(images.get(0))
                     .into(holder.iv);
-        }else {
+        } else {
             holder.rl.setVisibility(View.GONE);
         }
     }
 
     @Override
     public int getItemCount() {
-        return mShowItems == null ? 0 : mShowItems.size();
+        return mHeadView == null ? mShowItems.size() : mShowItems.size() + 1;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tv;
         ImageView iv;
@@ -65,10 +88,28 @@ public class ZhihuNewsThemeContentAdapter extends RecyclerView.Adapter<ZhihuNews
 
         public ViewHolder(View itemView) {
             super(itemView);
+            if (itemView == mHeadView) {
+                return;
+            }
             tv = (TextView) itemView.findViewById(R.id.tv_item_zhihunews_content);
             iv = (ImageView) itemView.findViewById(R.id.iv_item_zhihunews_content);
             rl = (RelativeLayout) itemView.findViewById(R.id.rl_item_zhihunews_content_images);
+            itemView.setOnClickListener(this);
         }
+
+
+        @Override
+        public void onClick(View v) {
+            mOnItemClickListener.OnItemClick(v, getPosition());
+        }
+    }
+
+    public void setHeadView(View headView) {
+        mHeadView = headView;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 
 }

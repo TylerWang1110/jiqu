@@ -6,6 +6,7 @@
         android:checkableBehavior="single"
         >
         <item
+            android:icon="@mipmap/home"
             android:id="@+id/nav_home"
             android:title="日报首页"/>
 

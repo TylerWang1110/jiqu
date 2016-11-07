@@ -22,6 +22,7 @@ import tyler.jiqu.R;
 import tyler.jiqu.globle.Const;
 import tyler.jiqu.manager.PageManger;
 import tyler.jiqu.model.ZhihuNewsThemeModel;
+import tyler.jiqu.presenter.MainPresenterImpl;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainView, View.OnClickListener {
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     private ZhihuNewsFragment mZhihuNewsFragment;
     private ZhihuNewsThemeContentFragment mZhihuNewsThemeContentFragment;
     private int mlastItem = R.id.nav_home;
+    private MainPresenterImpl mMainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,8 @@ public class MainActivity extends AppCompatActivity
 
 
     private void initData() {
-
+        mMainPresenter = new MainPresenterImpl(this);
+        mMainPresenter.getNewsThemesList(Const.URL_ZHIHU_NEWS_THEME_LIST);
     }
 
     private void initEvent() {
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
+
         if (item.getItemId() == mlastItem) {
             item.setChecked(true);
             mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -119,9 +123,11 @@ public class MainActivity extends AppCompatActivity
         int itemId = item.getItemId();
         if (itemId == R.id.nav_home) {
             showHomeFragment();
+            mTbMain.setTitle(R.string.app_name);
         } else {
             ZhihuNewsThemeModel.OthersBean othersBean = mOthers.get(itemId);
             showThemeFragment(othersBean);
+            mTbMain.setTitle(othersBean.getName());
         }
         item.setChecked(true);
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -155,13 +161,14 @@ public class MainActivity extends AppCompatActivity
         switch (v.getId()) {
             case R.id.fab_main:
 
-                if ( mlastItem != R.id.nav_home) {
-                    ZhihuNewsThemeContentFragment fragment = (ZhihuNewsThemeContentFragment) mFragmentManager.findFragmentByTag(Const
+                if (mlastItem != R.id.nav_home) {
+                    ZhihuNewsThemeContentFragment fragment = (ZhihuNewsThemeContentFragment)
+                            mFragmentManager.findFragmentByTag(Const
                             .ZHIHU_NEWS_THEME_CONTENT);
                     fragment.getRvThemecontent().smoothScrollToPosition(0);
-                }else {
-                ZhihuNewsFragment fragment = (ZhihuNewsFragment) mFragmentManager.findFragmentByTag(Const
-                        .ZHIHU_NEWS);
+                } else {
+                    ZhihuNewsFragment fragment = (ZhihuNewsFragment) mFragmentManager.findFragmentByTag(Const
+                            .ZHIHU_NEWS);
                     fragment.getSvMainZhihu().smoothScrollTo(0, 0);
                 }
                 break;
@@ -182,6 +189,7 @@ public class MainActivity extends AppCompatActivity
         for (int i = 0; i < mOthers.size(); i++) {
             mMenu.add(R.id.nav_menu, i, 0, mOthers.get(i).getName());
         }
+        mMenu.getItem(0).setChecked(true);
     }
 
 }

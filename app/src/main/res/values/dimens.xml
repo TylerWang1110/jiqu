@@ -9,7 +9,8 @@
 
     <dimen name="menu_head_icon_size">50dp</dimen>
     <dimen name="splash_tv_marginBottom">10dp</dimen>
-    <dimen name="splash_tv_size">20sp</dimen>
+    <dimen name="splash_tv_marginRight">10dp</dimen>
+    <dimen name="splash_tv_size">15sp</dimen>
 
     <!--知乎日报相关-->
     <dimen name="zhihu_news_head_hight">220dp</dimen>
