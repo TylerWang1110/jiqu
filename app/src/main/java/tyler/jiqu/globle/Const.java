@@ -7,7 +7,15 @@ package tyler.jiqu.globle;
  */
 public class Const {
 
-    public static final String ZHIHU_NEWS = "ZHIHU_NEWS";
+    public static final String ZHIHU_NEWS = "zhihu_news";
+    public static final String THEME_NIGHT = "theme_night";
+    public static final String SKIPSPLASH = "skipsplash";
+    public static final String NOPIC = "nopic";
+
+
+
+
+
     public static final String ZHIHU_NEWS_THEME_CONTENT = "ZHIHU_NEWS_THEME_CONTENT";
     //知乎日报 BaseURL
     public static final String URL_ZHIHU_BASE = "http://news-at.zhihu.com/api/4/";

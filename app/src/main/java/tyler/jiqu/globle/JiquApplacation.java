@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -17,12 +18,22 @@ import okhttp3.OkHttpClient;
 public class JiquApplacation extends Application {
 
     public static Context sAppContext;
+    public static File sCacheDir;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sAppContext = getApplicationContext();
         initThridFrame();
+        initCache();
+    }
+
+    private void initCache() {
+        sCacheDir = new File(JiquApplacation.sAppContext.getCacheDir().getAbsolutePath() + File
+                .separator + "http_cache");
+        if (!sCacheDir.exists()) {
+            sCacheDir.mkdirs();
+        }
     }
 
     /**

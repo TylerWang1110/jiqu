@@ -64,6 +64,8 @@ public class ZhihuNewsDetaileActivity extends AppCompatActivity implements Zhihu
     private void initView() {
         setSupportActionBar(mTbZhihunewsDetaile);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         //支持javascript
         mWbZhihuNewsDetaile.getSettings().setJavaScriptEnabled(true);
         // 设置可以支持缩放
@@ -73,14 +75,13 @@ public class ZhihuNewsDetaileActivity extends AppCompatActivity implements Zhihu
         //扩大比例的缩放
         //        mWbZhihuNewsDetaile.getSettings().setUseWideViewPort(true);
         //自适应屏幕
-        mWbZhihuNewsDetaile.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        mWbZhihuNewsDetaile.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm
+                .SINGLE_COLUMN);
         mWbZhihuNewsDetaile.getSettings().setLoadWithOverviewMode(true);
         mWbZhihuNewsDetaile.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                String src = "file:///android_asset/ZhihuNewsDetaile.js";
-                String baseUrl = "file:///android_asset";
-                mWbZhihuNewsDetaile.loadDataWithBaseURL(baseUrl, mBody, "text/html", "UTF-8",null);
+
             }
 
 
@@ -142,8 +143,9 @@ public class ZhihuNewsDetaileActivity extends AppCompatActivity implements Zhihu
         mBody = zhihuNewsDetaileModel.getBody();
         //        mWbZhihuNewsDetaile.loadUrl(share_url);
 
-        String src = "file:///android_asset/ZhihuNewsDetaile.js";
-        String baseUrl = "file:///android_asset";
-        mWbZhihuNewsDetaile.loadDataWithBaseURL(baseUrl, mBody, "text/html", "UTF-8",null);
+        String baseUrl = "file:///android_asset/";
+        mBody = "<link rel=\"stylesheet\" type=\"text/css\" href=\"ZhihuNewsDetaile.css\" />" + mBody;
+        mWbZhihuNewsDetaile.loadDataWithBaseURL(baseUrl, mBody, "text/html", "UTF-8", null);
+
     }
 }

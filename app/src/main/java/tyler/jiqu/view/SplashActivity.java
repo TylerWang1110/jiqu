@@ -16,6 +16,8 @@ import tyler.jiqu.globle.Const;
 import tyler.jiqu.model.SplashImageModel;
 import tyler.jiqu.presenter.SplashPresenter;
 import tyler.jiqu.presenter.SplashPresenterImpl;
+import tyler.jiqu.util.SPUtil;
+import tyler.jiqu.util.ThemeUtil;
 
 public class SplashActivity extends AppCompatActivity implements SplashView {
 
@@ -28,7 +30,16 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        boolean skipSplash = (boolean) SPUtil.get(this, Const.SKIPSPLASH, false);
+        if (skipSplash) {
+            finish();
+            go2Main();
+            return;
+        }
+
         setContentView(R.layout.activity_splash);
+        ThemeUtil.changeStatuBarColor(this);
         ButterKnife.bind(this);
         mMSplashPresenter = new SplashPresenterImpl(this);
         initView();

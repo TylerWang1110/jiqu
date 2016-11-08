@@ -1,5 +1,6 @@
 package tyler.jiqu.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -23,6 +24,7 @@ import tyler.jiqu.globle.Const;
 import tyler.jiqu.manager.PageManger;
 import tyler.jiqu.model.ZhihuNewsThemeModel;
 import tyler.jiqu.presenter.MainPresenterImpl;
+import tyler.jiqu.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainView, View.OnClickListener {
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //        ThemeUtil.switchTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -99,8 +102,19 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_theme:
+                ToastUtil.showShort(this, "切换主题 暂未实现");
+
+                break;
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+
+                break;
+
+            default:
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -164,7 +178,7 @@ public class MainActivity extends AppCompatActivity
                 if (mlastItem != R.id.nav_home) {
                     ZhihuNewsThemeContentFragment fragment = (ZhihuNewsThemeContentFragment)
                             mFragmentManager.findFragmentByTag(Const
-                            .ZHIHU_NEWS_THEME_CONTENT);
+                                    .ZHIHU_NEWS_THEME_CONTENT);
                     fragment.getRvThemecontent().smoothScrollToPosition(0);
                 } else {
                     ZhihuNewsFragment fragment = (ZhihuNewsFragment) mFragmentManager.findFragmentByTag(Const

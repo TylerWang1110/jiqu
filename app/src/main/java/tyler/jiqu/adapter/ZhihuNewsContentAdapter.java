@@ -23,7 +23,6 @@ import tyler.jiqu.db.ZhihuNewsDaoHelper;
 import tyler.jiqu.db.ZhihuNewsReaded;
 import tyler.jiqu.model.ZhihuNewsModel;
 import tyler.jiqu.util.DateUtil;
-import tyler.jiqu.util.L;
 
 /**
  * @创建者 Tyler.
@@ -98,8 +97,8 @@ public class ZhihuNewsContentAdapter extends RecyclerView.Adapter<ZhihuNewsConte
             Date date = DateUtil.stringToDate(mNewsDate);
             String string = DateUtil.dateToString(date);
             String week = DateUtil.dateToWeek(date);
-            L.d(TAG, " 有好日期 : ++++++++++++ " + string + week);
-            L.d(TAG, " 上一天 : ++++++++++++ " + DateUtil.dateToString(DateUtil.getDayBefore(date)));
+//            L.d(TAG, " 有好日期 : ++++++++++++ " + string + week);
+//            L.d(TAG, " 上一天 : ++++++++++++ " + DateUtil.dateToString(DateUtil.getDayBefore(date)));
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -9,8 +9,7 @@
         android:id="@+id/iv_zhihunews_theme_head"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/detaile_head"/>
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/tv_zhihunews_theme_head"
@@ -20,7 +19,6 @@
         android:layout_centerHorizontal="true"
         android:background="#20000000"
         android:padding="15dp"
-        android:text="sdddddddddddddddddddddddddddd"
         android:textColor="@android:color/white"
         android:textSize="20sp"/>
 

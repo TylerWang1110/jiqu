@@ -92,5 +92,25 @@ public class ZhihuNewsThemeModel {
         public void setName(String name) {
             this.name = name;
         }
+
+        @Override
+        public String toString() {
+            return "OthersBean{" +
+                    "color=" + color +
+                    ", thumbnail='" + thumbnail + '\'' +
+                    ", description='" + description + '\'' +
+                    ", id=" + id +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ZhihuNewsThemeModel{" +
+                "limit=" + limit +
+                ", subscribed=" + subscribed +
+                ", others=" + others +
+                '}';
     }
 }

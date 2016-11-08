@@ -76,7 +76,6 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
     Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_zhihu, null);
-        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -180,30 +179,34 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
             images.add(top_story.getImage());
             titles.add(top_story.getTitle());
         }
-        mBannerMainZhihuHead
-                .setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE)
-                .setImages(images)
-                .setImageLoader(new GlideImageLoader())
-                .setBannerTitles(titles)
-                .start();
-        mBannerMainZhihuHead.setOnBannerClickListener(new OnBannerClickListener() {
-            @Override
-            public void OnBannerClick(int position) {
-                //FIXME: 进入详情页
-                ZhihuNewsModel.TopStoriesBean topStoriesBean = mTop_stories.get(position - 1);
-                int id = topStoriesBean.getId();
-                try {
-                    mDao.create(new ZhihuNewsReaded(id, ZhihuNewsReaded.ISREADED_TRUE));
-                } catch (SQLException e) {
-                    e.printStackTrace();
+
+        if (mBannerMainZhihuHead != null) {
+
+            mBannerMainZhihuHead
+                    .setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE)
+                    .setImages(images)
+                    .setImageLoader(new GlideImageLoader())
+                    .setBannerTitles(titles)
+                    .start();
+            mBannerMainZhihuHead.setOnBannerClickListener(new OnBannerClickListener() {
+                @Override
+                public void OnBannerClick(int position) {
+                    //FIXME: 进入详情页
+                    ZhihuNewsModel.TopStoriesBean topStoriesBean = mTop_stories.get(position - 1);
+                    int id = topStoriesBean.getId();
+                    try {
+                        mDao.create(new ZhihuNewsReaded(id, ZhihuNewsReaded.ISREADED_TRUE));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    mIntent = new Intent(getContext(), ZhihuNewsDetaileActivity.class);
+                    mIntent.putExtra(ZhihuNewsDetaileActivity.NEWS_ID, id);
+                    startActivity(mIntent);
                 }
-                mIntent = new Intent(getContext(), ZhihuNewsDetaileActivity.class);
-                mIntent.putExtra(ZhihuNewsDetaileActivity.NEWS_ID, id);
-                startActivity(mIntent);
-            }
 
 
-        });
+            });
+        }
     }
 
 
