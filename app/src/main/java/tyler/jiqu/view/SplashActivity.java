@@ -71,7 +71,7 @@ public class SplashActivity extends AppCompatActivity implements SplashView {
             Glide.with(this)
                     .load(imageModel.getImg())
                     .into(mIvSplash);
+            mTvSplash.setText(imageModel.getText());
         }
-        mTvSplash.setText(imageModel.getText());
     }
 }

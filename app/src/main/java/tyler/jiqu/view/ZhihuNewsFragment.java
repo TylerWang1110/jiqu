@@ -34,6 +34,7 @@ import tyler.jiqu.adapter.ZhihuNewsContentAdapter;
 import tyler.jiqu.db.ZhihuNewsDaoHelper;
 import tyler.jiqu.db.ZhihuNewsReaded;
 import tyler.jiqu.globle.Const;
+import tyler.jiqu.manager.HttpManager;
 import tyler.jiqu.model.ZhihuNewsModel;
 import tyler.jiqu.presenter.ZhihuNewsPresenterImpl;
 import tyler.jiqu.util.DateUtil;
@@ -212,7 +213,14 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
 
     @Override
     public void onRefresh() {
-        mZhihuNewsPresenter.getData(Const.URL_ZHIHU_NEWS_LATEST);
+        //        mZhihuNewsPresenter.getData(Const.URL_ZHIHU_NEWS_LATEST);
+        HttpManager.getInstance().setOnDataFinishListener(new HttpManager.OnDataFinishListener() {
+            @Override
+            public void onDataFinish(Object obj) {
+                showView((ZhihuNewsModel) obj);
+            }
+        });
+        HttpManager.getInstance().getData(Const.URL_ZHIHU_NEWS_LATEST, ZhihuNewsModel.class);
         mIsRefresh = true;
     }
 

@@ -17,6 +17,7 @@ import tyler.jiqu.view.ZhihuNewsDetaileView;
 public class ZhihuNewsDetailePresenterImpl implements ZhihuNewsDetailePresenter {
 
     private final ZhihuNewsDetaileActivity mZhihuNewsDetaileView;
+    private ZhihuNewsDetaileModel mZhihuNewsDetaileModel;
 
     public ZhihuNewsDetailePresenterImpl(ZhihuNewsDetaileView zhihuNewsDetaileView) {
         mZhihuNewsDetaileView = (ZhihuNewsDetaileActivity) zhihuNewsDetaileView;
@@ -37,10 +38,13 @@ public class ZhihuNewsDetailePresenterImpl implements ZhihuNewsDetailePresenter 
                     public void onResponse(String response, int id) {
                         if (response != null && !response.equals("")) {
                             Gson gson = new Gson();
-                            ZhihuNewsDetaileModel zhihuNewsDetaileModel = gson.fromJson(response, ZhihuNewsDetaileModel.class);
-                            mZhihuNewsDetaileView.showView(zhihuNewsDetaileModel);
+                            mZhihuNewsDetaileModel = gson.fromJson(response,
+                                    ZhihuNewsDetaileModel.class);
+                            mZhihuNewsDetaileView.showView(mZhihuNewsDetaileModel);
                         }
                     }
                 });
+
     }
+
 }
