@@ -112,6 +112,7 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
      */
     public void showView(final ZhihuNewsModel zhihuNewsModel) {
         mDate = zhihuNewsModel.getDate();
+        System.out.println("hhhhhhhhhhhhhhhh" + mIsGetMore);
         if (!mIsGetMore) {
             mTop_stories = zhihuNewsModel.getTop_stories();
             showHeadView();
@@ -217,10 +218,13 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
         HttpManager.getInstance().setOnDataFinishListener(new HttpManager.OnDataFinishListener() {
             @Override
             public void onDataFinish(Object obj) {
-                showView((ZhihuNewsModel) obj);
+                if (obj != null) {
+                    showView((ZhihuNewsModel) obj);
+                }
             }
         });
         HttpManager.getInstance().getData(Const.URL_ZHIHU_NEWS_LATEST, ZhihuNewsModel.class);
+
         mIsRefresh = true;
     }
 
@@ -266,6 +270,7 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
                     L.d(TAG, "滑动到了底部 scrollY=" + scrollY);
                     L.d(TAG, "滑动到了底部 height=" + height);
                     L.d(TAG, "滑动到了底部 scrollViewMeasuredHeight=" + scrollViewMeasuredHeight);
+                    mIsGetMore = true;
                     //FIXME 加载更多
                     Snackbar.make(mTvSnackbar, "加载中...", Snackbar.LENGTH_SHORT).show();
                     try {
@@ -276,7 +281,7 @@ public class ZhihuNewsFragment extends Fragment implements ZhihuNewsView, SwipeR
                     }
                     L.d(TAG, Const.URL_ZHIHU_NEWS_BEFORE + mNewDateString);
                     mZhihuNewsPresenter.getData(Const.URL_ZHIHU_NEWS_BEFORE + mNewDateString);
-                    mIsGetMore = true;
+
                 }
             default:
                 break;

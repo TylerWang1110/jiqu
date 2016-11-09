@@ -17,7 +17,6 @@ public class DateUtil {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         Date date = format.parse(dateString);
         return date;
-
     }
 
     public static String dateToWeek(Date date) {

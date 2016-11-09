@@ -116,8 +116,9 @@ public class ZhihuNewsDetaileActivity extends AppCompatActivity implements Zhihu
                 break;
             case R.id.action_comment:
                 //FIXME
-                ToastUtil.showShort(this, "查看评论");
-
+                Intent intent = new Intent(this, ZhihuNewsCommentsActivity.class);
+                intent.putExtra(ZhihuNewsCommentsActivity.NEWS_ID, mNewsId);
+                startActivity(intent);
                 break;
 
 

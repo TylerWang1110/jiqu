@@ -13,9 +13,6 @@ public class Const {
     public static final String NOPIC = "nopic";
 
 
-
-
-
     public static final String ZHIHU_NEWS_THEME_CONTENT = "ZHIHU_NEWS_THEME_CONTENT";
     //知乎日报 BaseURL
     public static final String URL_ZHIHU_BASE = "http://news-at.zhihu.com/api/4/";
@@ -32,5 +29,8 @@ public class Const {
     public static final String URL_ZHIHU_NEWS_BEFORE = "http://news.at.zhihu.com/api/4/news/before/";
 
     //知乎日报 详情页URL  + ID
-    public static final String URL_ZHIHU_NEWS_DETAILE = "http://news-at.zhihu.com/api/4/news/";
+    public static final String URL_ZHIHU_NEWS_DETAILE = URL_ZHIHU_BASE + "news/";
+
+    //知乎日报 评论页面URL  + ID
+    public static final String URL_ZHIHU_NEWS_COMMENTS = URL_ZHIHU_BASE + "story/";
 }
