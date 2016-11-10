@@ -2,20 +2,17 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="tyler.jiqu.view.ZhihuNewsDetaileActivity"
-    tools:showIn="@layout/activity_zhihu_news_detaile">
+    android:scrollbars="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <WebView
-        android:id="@+id/wb_zhihu_news_detaile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-200dp"
-        android:padding="10dp">
-    </WebView>
+        <WebView
+            android:id="@+id/wb_zhihu_news_detaile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </WebView>
+
 
 </android.support.v4.widget.NestedScrollView>

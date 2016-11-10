@@ -1,5 +1,6 @@
 package tyler.jiqu.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -34,10 +35,11 @@ import tyler.jiqu.presenter.ZhihuNewsThemeContentPresenterImpl;
  * @创建时间 2016/11/7  15:16.
  * @描述 ${TODO}.
  */
+@SuppressLint("ValidFragment")
 public class ZhihuNewsThemeContentFragment extends Fragment implements ZhihuNewsThemeContentView,
         SwipeRefreshLayout.OnRefreshListener, ZhihuNewsThemeContentAdapter.OnItemClickListener {
 
-    private final ZhihuNewsThemeModel.OthersBean mOthersBean;
+    private ZhihuNewsThemeModel.OthersBean mOthersBean = null;
     @Bind(R.id.rv_themecontent)
     RecyclerView mRvThemecontent;
     @Bind(R.id.srl_themecontent)
@@ -46,6 +48,7 @@ public class ZhihuNewsThemeContentFragment extends Fragment implements ZhihuNews
     private int mId;
     private boolean mIsRefresh;
     private List<ZhihuNewsThemeContentModel.StoriesBean> mStories = new ArrayList<>();
+
 
     @Nullable
     @Override
@@ -57,6 +60,7 @@ public class ZhihuNewsThemeContentFragment extends Fragment implements ZhihuNews
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mZhihuNewsThemeContentPresenterImpl = new ZhihuNewsThemeContentPresenterImpl(this);
         ButterKnife.bind(this, view);
         init();
     }
@@ -69,7 +73,6 @@ public class ZhihuNewsThemeContentFragment extends Fragment implements ZhihuNews
 
     public ZhihuNewsThemeContentFragment(ZhihuNewsThemeModel.OthersBean othersBean) {
         mOthersBean = othersBean;
-        mZhihuNewsThemeContentPresenterImpl = new ZhihuNewsThemeContentPresenterImpl(this);
     }
 
 

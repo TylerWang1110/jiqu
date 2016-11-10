@@ -11,6 +11,7 @@ public class Const {
     public static final String THEME_NIGHT = "theme_night";
     public static final String SKIPSPLASH = "skipsplash";
     public static final String NOPIC = "nopic";
+    public static final String URL_GITHUB = "https://github.com/TylerWang1110/jiqu";
 
 
     public static final String ZHIHU_NEWS_THEME_CONTENT = "ZHIHU_NEWS_THEME_CONTENT";

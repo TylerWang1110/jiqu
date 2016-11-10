@@ -97,18 +97,19 @@ public class ZhihuNewsContentAdapter extends RecyclerView.Adapter<ZhihuNewsConte
             Date date = DateUtil.stringToDate(mNewsDate);
             String string = DateUtil.dateToString(date);
             String week = DateUtil.dateToWeek(date);
-//            L.d(TAG, " 有好日期 : ++++++++++++ " + string + week);
-//            L.d(TAG, " 上一天 : ++++++++++++ " + DateUtil.dateToString(DateUtil.getDayBefore(date)));
+            //            L.d(TAG, " 有好日期 : ++++++++++++ " + string + week);
+            //            L.d(TAG, " 上一天 : ++++++++++++ " + DateUtil.dateToString(DateUtil.getDayBefore
+            // (date)));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String date = sdf.format(new Date());
-        if (position == 0) {
-            holder.tvDate.setText(date.equals(mNewsDate) ? "今日热闻" : date);
-            holder.tvDate.setVisibility(View.VISIBLE);
-        }
+
+        holder.tvDate.setText(date.equals(mNewsDate) ? "今日热闻" : date);
+        holder.tvDate.setVisibility(View.VISIBLE);
+
     }
 
     @Override

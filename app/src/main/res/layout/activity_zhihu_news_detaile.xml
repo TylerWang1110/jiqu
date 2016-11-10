@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context="tyler.jiqu.view.ZhihuNewsDetaileActivity">
 
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -19,12 +20,12 @@
             android:id="@+id/ctl_zhihunews_detaile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:title=" "
-            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
-            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title=" ">
 
             <ImageView
                 android:id="@+id/iv_zhihunews_detaile"
@@ -37,13 +38,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+    <!--<include layout="@layout/content_zhihu_news_detaile"/>-->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include layout="@layout/content_zhihu_news_detaile"/>
+        <WebView
+            android:id="@+id/wb_zhihu_news_detaile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </WebView>
 
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

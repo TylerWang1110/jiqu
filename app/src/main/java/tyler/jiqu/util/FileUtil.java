@@ -406,7 +406,6 @@ public class FileUtil {
                         deletedFile.delete();
                     }
                     newPath.delete();
-                    Log.i("DirectoryManager deleteDirectory", fileName);
                     status = true;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -494,7 +493,6 @@ public class FileUtil {
         File f = new File(filePath);
         checker.checkDelete(filePath);
         if (f.isFile()) {
-            Log.i("DirectoryManager deleteFile", filePath);
             f.delete();
             return true;
         }

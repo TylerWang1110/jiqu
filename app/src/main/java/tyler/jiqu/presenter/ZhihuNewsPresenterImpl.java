@@ -1,5 +1,6 @@
 package tyler.jiqu.presenter;
 
+
 import tyler.jiqu.manager.DataManager;
 import tyler.jiqu.model.ZhihuNewsModel;
 import tyler.jiqu.view.ZhihuNewsFragment;
@@ -50,10 +51,13 @@ public class ZhihuNewsPresenterImpl implements ZhihuNewsPresenter, DataManager.O
 
     @Override
     public void onDataFinish(Object obj) {
-        mZhihuNewsModel = (ZhihuNewsModel) obj;
-        if (mZhihuNewsModel != null) {
+        try {
+            mZhihuNewsModel = (ZhihuNewsModel) obj;
+            if (mZhihuNewsModel != null) {
+                mZhihuNewsFragment.showView(mZhihuNewsModel);
+            }
+        } catch (ClassCastException e) {
 
-            mZhihuNewsFragment.showView(mZhihuNewsModel);
         }
     }
 }

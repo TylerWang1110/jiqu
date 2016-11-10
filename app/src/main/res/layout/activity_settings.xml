@@ -7,78 +7,184 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-
     tools:context="tyler.jiqu.view.SettingsActivity">
 
     <android.support.v7.widget.Toolbar
-        app:navigationIcon="@mipmap/abc_ic_ab_back_mtrl_am_alpha"
         android:id="@+id/tb_settings"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="5dp"
+        app:navigationIcon="@mipmap/abc_ic_ab_back_mtrl_am_alpha"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:title="设置"
         app:titleTextColor="@android:color/white"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@drawable/shape_divider"
-        android:orientation="vertical"
-        android:showDividers="middle">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:paddingLeft="16dp"
-            android:paddingTop="20dp"
-            android:text="常规"
-            android:textColor="@color/colorAccent"/>
+            android:layout_height="match_parent"
+            android:divider="@drawable/shape_divider"
+            android:orientation="vertical"
+            android:showDividers="middle">
 
-        <Switch
-            android:id="@+id/sw_theme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:shadowColor="@color/colorAccent"
-            android:text="夜间模式"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="20dp"
+                android:text="常规"
+                android:textColor="@color/colorAccent"/>
 
-
-        <Switch
-            android:id="@+id/sw_splashpage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:shadowColor="@color/colorAccent"
-            android:text="跳过启动页"/>
+            <Switch
+                android:id="@+id/sw_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:shadowColor="@color/colorAccent"
+                android:text="夜间模式"/>
 
 
-        <Switch
-            android:id="@+id/sw_nopic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="仅Wifi下加载图片"
-            android:padding="16dp"
-            android:shadowColor="@color/colorAccent"
-            android:text="无图模式"/>
+            <Switch
+                android:id="@+id/sw_splashpage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:shadowColor="@color/colorAccent"
+                android:text="跳过启动页"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:paddingLeft="16dp"
-            android:paddingTop="20dp"
-            android:text="其他"
-            android:textColor="@color/colorAccent"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="关于"
-            android:textColor="@android:color/black"/>
+            <Switch
+                android:id="@+id/sw_nopic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="仅Wifi下加载图片"
+                android:padding="16dp"
+                android:shadowColor="@color/colorAccent"
+                android:text="无图模式"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="20dp"
+                android:text="其他"
+                android:textColor="@color/colorAccent"/>
+
+            <LinearLayout
+                android:id="@+id/ll_settings_clearcache"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="清除缓存"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_settings_cache"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="10.0MB"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="20dp"
+                android:text="关于"
+                android:textColor="@color/colorAccent"/>
+
+            <LinearLayout
+                android:id="@+id/ll_settings_github"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目地址"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="https://github.com/TylerWang1110/jiqu"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_settings_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-mail"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="tylerwang1203@gmail.com"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_settings_escape_clause"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="免责条款"
+                android:textColor="@android:color/black"/>
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_settings_licence"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="16dp"-->
+                <!--android:text="开源许可"-->
+                <!--android:textColor="@android:color/black"/>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="版本"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="1.0"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

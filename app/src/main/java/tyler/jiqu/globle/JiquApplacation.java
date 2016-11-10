@@ -3,6 +3,8 @@ package tyler.jiqu.globle;
 import android.app.Application;
 import android.content.Context;
 
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;
@@ -16,6 +18,9 @@ import okhttp3.OkHttpClient;
  * @描述 ${TODO}.
  */
 public class JiquApplacation extends Application {
+
+
+
 
     public static Context sAppContext;
     public static File sCacheDir;
@@ -41,6 +46,17 @@ public class JiquApplacation extends Application {
      */
     private void initThridFrame() {
         initOkhttpUtil();
+
+        initUMShare();
+    }
+
+    private void initUMShare() {
+        UMShareAPI.get(this);
+//        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+//        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad");
+        PlatformConfig.setAlipay("2016110902679760");
+        PlatformConfig.setQQZone("1105735256", "mubqf12SpbxFljFP");
+//        Config.REDIRECT_URL = "您新浪后台的回调地址"
     }
 
     /**

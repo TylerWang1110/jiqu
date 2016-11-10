@@ -14,6 +14,10 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,6 +25,7 @@ import tyler.jiqu.R;
 import tyler.jiqu.globle.Const;
 import tyler.jiqu.model.ZhihuNewsDetaileModel;
 import tyler.jiqu.presenter.ZhihuNewsDetailePresenterImpl;
+import tyler.jiqu.util.L;
 import tyler.jiqu.util.ToastUtil;
 
 /**
@@ -84,10 +89,11 @@ public class ZhihuNewsDetaileActivity extends AppCompatActivity implements Zhihu
 
             }
 
-
         });
 
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,8 +116,11 @@ public class ZhihuNewsDetaileActivity extends AppCompatActivity implements Zhihu
 
                 break;
             case R.id.action_share:
-                //FIXME
-                ToastUtil.showShort(this, "分享成功");
+                //FIXME 分享
+                new ShareAction(ZhihuNewsDetaileActivity.this).withText("hello")
+                        .setDisplayList(SHARE_MEDIA.EMAIL, SHARE_MEDIA.SMS, SHARE_MEDIA.SINA, SHARE_MEDIA
+                                .QQ, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.ALIPAY)
+                        .setCallback(umShareListener).open();
 
                 break;
             case R.id.action_comment:
@@ -149,4 +158,36 @@ public class ZhihuNewsDetaileActivity extends AppCompatActivity implements Zhihu
         mWbZhihuNewsDetaile.loadDataWithBaseURL(baseUrl, mBody, "text/html", "UTF-8", null);
 
     }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            L.d("plat", "platform" + platform);
+
+            ToastUtil.showShort(ZhihuNewsDetaileActivity.this, platform + " 分享成功啦");
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            ToastUtil.showShort(ZhihuNewsDetaileActivity.this, platform + " 分享失败啦");
+            if (t != null) {
+                L.d("throw", "throw:" + t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            ToastUtil.showShort(ZhihuNewsDetaileActivity.this, platform + " 分享取消啦");
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+
+    }
+
+
 }
